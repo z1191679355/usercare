@@ -2861,7 +2861,7 @@ to {
 															</div>
 															<div class="mint-cell-value mt-color-grey-lv3"
 																style="flex: 1 1 calc(100% - 96px); justify-content: normal;">
-																<div class="em-select-value mt-color-grey-lv3">15113991267</div>
+																<div class="em-select-value mt-color-grey-lv3">15113921217</div>
 															</div>
 															<!---->
 														</div>
@@ -3306,7 +3306,7 @@ to {
 															<div class="mint-cell-value mt-color-grey-lv3"
 																style="flex: 1 1 calc(100% - 96px); justify-content: normal;">
 																<div data-v-01cabbf9=""
-																	class="em-select-value mt-color-grey-lv3">西丽湖校区西门</div>
+																	class="em-select-value mt-color-grey-lv3" id="position-x">西丽湖校区西门</div>
 															</div>
 															<!---->
 														</div>
@@ -3443,7 +3443,69 @@ to {
 	document.getElementById("generate-time").innerHTML = "生成时间：" + time2 + "<br>（此返校码当天有效)";
 	document.getElementById("update-time").innerHTML = time1;
 	document.getElementById("start-end-time").innerHTML = time3 + "-23:00";
-	console.log(time2);
+	//console.log(time2);
+
+	//********************************************定位********************************************
+	if(navigator.geolocation){
+	  navigator.geolocation.getCurrentPosition(onSuccess , onError);
+	}else{
+	  alert("您的浏览器不支持使用HTML 5来获取地理位置服务");
+	}
+	//定位数据获取成功响应
+	function  onSuccess(position){
+		var latitude = 113.956032;//position.coords.latitude;
+		var longitude = 22.595635;//position.coords.longitude;
+		var myposition = Math.sqrt(latitude*latitude+longitude*longitude);
+		var north = Math.sqrt(113.95503*113.95503+22.59772*22.59772);
+		var south = Math.sqrt(113.959715*113.959715+22.590016*22.590016);
+		var western = Math.sqrt(113.957505*113.957505+22.591184*22.591184);
+		var eastern = Math.sqrt(113.961085*113.961085+22.593499*22.593499);
+		var num = new Array(4);
+		num[0] = Math.abs(myposition-north);
+		num[1] = Math.abs(myposition-south);	
+		num[2] = Math.abs(myposition-western);
+		num[3] = Math.abs(myposition-eastern);
+		console.log(Math.abs(myposition-north));
+		var n = 99,index;
+		for(var i = 0; i < 4; i++){
+			if(num[i] < n){
+				index = i;
+				n = num[i];
+			}
+		}
+		switch(index) {
+		     case 0:
+		        document.getElementById("position-x").innerHTML = "西丽湖校区北门";
+		        break;
+		     case 1:
+		        document.getElementById("position-x").innerHTML = "西丽湖校区南门";
+		        break;
+		     case 2:
+		        document.getElementById("position-x").innerHTML = "西丽湖校区西门";
+		        break;
+		     default:
+		        document.getElementById("position-x").innerHTML = "西丽湖校区东门";
+		} 
+	}
+	//定位数据获取失败响应
+	function onError(error) {
+	  switch(error.code)
+	  {
+	    case error.PERMISSION_DENIED:
+	    alert("您拒绝对获取地理位置的请求");
+	    break;
+	    case error.POSITION_UNAVAILABLE:
+	    alert("位置信息是不可用的");
+	    break;
+	    case error.TIMEOUT:
+	    alert("请求您的地理位置超时");
+	    break;
+	    case error.UNKNOWN_ERROR:
+	    alert("未知错误");
+	    break;
+	  }
+	}
+
 </script>
 <style type="text/css">
 #yddContainer {
