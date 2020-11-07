@@ -10,7 +10,8 @@
 
 
 
-
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=xxxxxxxxxx"></script>
+<script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
 <script>
 	moduleNodes = {
 		"failed" : "获取流程节点失败，请检查应用流程节点配置信息。"
@@ -3452,61 +3453,103 @@ to {
 	  alert("您的浏览器不支持使用HTML 5来获取地理位置服务");
 	}
 	//定位数据获取成功响应
-	function  onSuccess(position){
-		var latitude = position.coords.latitude;
-		var longitude = position.coords.longitude;
-		var myposition = Math.sqrt(latitude*latitude+longitude*longitude);
-		var north = Math.sqrt(113.95503*113.95503+22.59772*22.59772);
-		var south = Math.sqrt(113.959715*113.959715+22.590016*22.590016);
-		var western = Math.sqrt(113.957505*113.957505+22.591184*22.591184);
-		var eastern = Math.sqrt(113.961085*113.961085+22.593499*22.593499);
-		var num = new Array(4);
-		num[0] = Math.abs(myposition-north);
-		num[1] = Math.abs(myposition-south);	
-		num[2] = Math.abs(myposition-western);
-		num[3] = Math.abs(myposition-eastern);
-		console.log(Math.abs(myposition-north));
-		var n = 99,index;
-		for(var i = 0; i < 4; i++){
-			if(num[i] < n){
-				index = i;
-				n = num[i];
+	// function  onSuccess(position){
+	// 	var latitude = position.coords.latitude;
+	// 	var longitude = position.coords.longitude;
+	// 	var myposition = Math.sqrt(latitude*latitude+longitude*longitude);
+	// 	var north = Math.sqrt(113.95503*113.95503+22.59772*22.59772);
+	// 	var south = Math.sqrt(113.959715*113.959715+22.590016*22.590016);
+	// 	var western = Math.sqrt(113.957505*113.957505+22.591184*22.591184);
+	// 	var eastern = Math.sqrt(113.961085*113.961085+22.593499*22.593499);
+	// 	var num = new Array(4);
+	// 	num[0] = Math.abs(myposition-north);
+	// 	num[1] = Math.abs(myposition-south);	
+	// 	num[2] = Math.abs(myposition-western);
+	// 	num[3] = Math.abs(myposition-eastern);
+	// 	console.log(Math.abs(myposition-north));
+	// 	var n = 99,index;
+	// 	for(var i = 0; i < 4; i++){
+	// 		if(num[i] < n){
+	// 			index = i;
+	// 			n = num[i];
+	// 		}
+	// 	}
+	// 	//document.getElementById("position-x").innerHTML = latitude+"，"+longitude+","+index;
+	// 	switch(index) {
+	// 	     case 0:
+	// 	        document.getElementById("position-x").innerHTML = "西丽湖校区北门";
+	// 	        break;
+	// 	     case 1:
+	// 	        document.getElementById("position-x").innerHTML = "西丽湖校区南门";
+	// 	        break;
+	// 	     case 2:
+	// 	        document.getElementById("position-x").innerHTML = "西丽湖校区西门";
+	// 	        break;
+	// 	     default:
+	// 	        document.getElementById("position-x").innerHTML = "西丽湖校区东门";
+	// 	} 
+	// }
+	// //定位数据获取失败响应
+	// function onError(error) {
+	//   switch(error.code)
+	//   {
+	//     case error.PERMISSION_DENIED:
+	//     alert("您拒绝对获取地理位置的请求");
+	//     break;
+	//     case error.POSITION_UNAVAILABLE:
+	//     alert("位置信息是不可用的");
+	//     break;
+	//     case error.TIMEOUT:
+	//     alert("请求您的地理位置超时");
+	//     break;
+	//     case error.UNKNOWN_ERROR:
+	//     alert("未知错误");
+	//     break;
+	//   }
+	// }
+	window.BMap = BMap；
+	let BMap = window.BMap
+	let geolocation = new BMap.Geolocation()
+
+	geolocation.enableSDKLocation(); //允许SDK辅助
+	geolocation.getCurrentPosition(function (r){
+		if(this.getStatus() == 0){
+			var latitude = r.latitude;
+			var longitude = r.longitude;
+			var myposition = Math.sqrt(latitude*latitude+longitude*longitude);
+			var north = Math.sqrt(113.95503*113.95503+22.59772*22.59772);
+			var south = Math.sqrt(113.959715*113.959715+22.590016*22.590016);
+			var western = Math.sqrt(113.957505*113.957505+22.591184*22.591184);
+			var eastern = Math.sqrt(113.961085*113.961085+22.593499*22.593499);
+			var num = new Array(4);
+			num[0] = Math.abs(myposition-north);
+			num[1] = Math.abs(myposition-south);	
+			num[2] = Math.abs(myposition-western);
+			num[3] = Math.abs(myposition-eastern);
+			console.log(Math.abs(myposition-north));
+			var n = 99,index;
+			for(var i = 0; i < 4; i++){
+				if(num[i] < n){
+					index = i;
+					n = num[i];
+				}
+			}
+			//document.getElementById("position-x").innerHTML = latitude+"，"+longitude+","+index;
+			switch(index) {
+			     case 0:
+			        document.getElementById("position-x").innerHTML = "西丽湖校区北门";
+			        break;
+			     case 1:
+			        document.getElementById("position-x").innerHTML = "西丽湖校区南门";
+			        break;
+			     case 2:
+			        document.getElementById("position-x").innerHTML = "西丽湖校区西门";
+			        break;
+			     default:
+			        document.getElementById("position-x").innerHTML = "西丽湖校区东门";
 			}
 		}
-		//document.getElementById("position-x").innerHTML = latitude+"，"+longitude+","+index;
-		switch(index) {
-		     case 0:
-		        document.getElementById("position-x").innerHTML = "西丽湖校区北门";
-		        break;
-		     case 1:
-		        document.getElementById("position-x").innerHTML = "西丽湖校区南门";
-		        break;
-		     case 2:
-		        document.getElementById("position-x").innerHTML = "西丽湖校区西门";
-		        break;
-		     default:
-		        document.getElementById("position-x").innerHTML = "西丽湖校区东门";
-		} 
-	}
-	//定位数据获取失败响应
-	function onError(error) {
-	  switch(error.code)
-	  {
-	    case error.PERMISSION_DENIED:
-	    alert("您拒绝对获取地理位置的请求");
-	    break;
-	    case error.POSITION_UNAVAILABLE:
-	    alert("位置信息是不可用的");
-	    break;
-	    case error.TIMEOUT:
-	    alert("请求您的地理位置超时");
-	    break;
-	    case error.UNKNOWN_ERROR:
-	    alert("未知错误");
-	    break;
-	  }
-	}
-
+	});
 </script>
 <style type="text/css">
 #yddContainer {
