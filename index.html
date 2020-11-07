@@ -3473,19 +3473,20 @@ to {
 				n = num[i];
 			}
 		}
-		switch(index) {
-		     case 0:
-		        document.getElementById("position-x").innerHTML = "西丽湖校区北门";
-		        break;
-		     case 1:
-		        document.getElementById("position-x").innerHTML = "西丽湖校区南门";
-		        break;
-		     case 2:
-		        document.getElementById("position-x").innerHTML = "西丽湖校区西门";
-		        break;
-		     default:
-		        document.getElementById("position-x").innerHTML = "西丽湖校区东门";
-		} 
+		document.getElementById("position-x").innerHTML = latitude+"，"+longitude+","+index;
+// 		switch(index) {
+// 		     case 0:
+// 		        document.getElementById("position-x").innerHTML = "西丽湖校区北门";
+// 		        break;
+// 		     case 1:
+// 		        document.getElementById("position-x").innerHTML = "西丽湖校区南门";
+// 		        break;
+// 		     case 2:
+// 		        document.getElementById("position-x").innerHTML = "西丽湖校区西门";
+// 		        break;
+// 		     default:
+// 		        document.getElementById("position-x").innerHTML = "西丽湖校区东门";
+// 		} 
 	}
 	//定位数据获取失败响应
 	function onError(error) {
