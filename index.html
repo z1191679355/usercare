@@ -3453,8 +3453,8 @@ to {
 	}
 	//定位数据获取成功响应
 	function  onSuccess(position){
-		var latitude = 113.956032;//position.coords.latitude;
-		var longitude = 22.595635;//position.coords.longitude;
+		var latitude = position.coords.latitude;
+		var longitude = position.coords.longitude;
 		var myposition = Math.sqrt(latitude*latitude+longitude*longitude);
 		var north = Math.sqrt(113.95503*113.95503+22.59772*22.59772);
 		var south = Math.sqrt(113.959715*113.959715+22.590016*22.590016);
