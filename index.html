@@ -1,17 +1,9 @@
 <!DOCTYPE html>
-<!-- saved from url=(0144)https://ehall.szpt.edu.cn/publicappinternet/sys/szptpubyhjkk/*default/index.do?processInstanceId=1&nodeId=1&instId=1&taskId=1&defId=1&defKey=1#/ -->
 <html lang="zh-CN">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--/公共jsp -->
 <title>用户健康卡</title>
-
-
-
-
-
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=xxxxxxxxxx"></script>
-<script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
 <script>
 	moduleNodes = {
 		"failed" : "获取流程节点失败，请检查应用流程节点配置信息。"
@@ -3467,29 +3459,24 @@ to {
 		num[2] = Math.abs(myposition-western);
 		num[3] = Math.abs(myposition-eastern);
 		console.log(Math.abs(myposition-north));
-		var n = 99,index;
+		var index,temp=99999.0;
 		for(var i = 0; i < 4; i++){
-			if(num[i] < 99999.0){
+			if(num[i] < temp){
 				index = i;
-				n = num[i];
+				temp = num[i];
 			}
 		}
 		//console.log(latitude+"，"+longitude+","+index);
-		//document.getElementById("position-x").innerHTML = latitude+"，"+longitude+","+index;
 		document.getElementById("position-x").innerHTML = num[0]+"，"+num[1]+","+num[2]+"，"+num[3];
-// 		switch(index) {
-// 		     case 0:
-// 		        document.getElementById("position-x").innerHTML = "西丽湖校区北门";
-// 		        break;
-// 		     case 1:
-// 		        document.getElementById("position-x").innerHTML = "西丽湖校区南门";
-// 		        break;
-// 		     case 2:
-// 		        document.getElementById("position-x").innerHTML = "西丽湖校区西门";
-// 		        break;
-// 		     default:
-// 		        document.getElementById("position-x").innerHTML = "西丽湖校区东门";
-// 		} 
+		if(index==0){
+			document.getElementById("position-x").innerHTML = "西丽湖校区北门";
+		}else if(index==1){
+			document.getElementById("position-x").innerHTML = "西丽湖校区南门";
+		}else if(index==2){
+			document.getElementById("position-x").innerHTML = "西丽湖校区西门";
+		}else{
+			document.getElementById("position-x").innerHTML = "西丽湖校区东门";
+		}
 	}
 	//定位数据获取失败响应
 	function onError(error) {
