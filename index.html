@@ -3449,7 +3449,7 @@ to {
 		var latitude = position.coords.latitude;
 		var longitude = position.coords.longitude;
 		var myposition = Math.sqrt(latitude*latitude+longitude*longitude);
-		var north = Math.sqrt(113.955048*113.955048+22.597733*22.597733);
+		var north = Math.sqrt(113.953782*113.953782+22.5986*22.5986);
 		var south = Math.sqrt(113.95971*113.95971+22.590004*22.590004);
 		var western = Math.sqrt(113.957505*113.957505+22.591184*22.591184);
 		var eastern = Math.sqrt(113.961085*113.961085+22.593499*22.593499);
@@ -3468,15 +3468,15 @@ to {
 		}
 		//console.log(latitude+"，"+longitude+","+index);
 		document.getElementById("position-x").innerHTML = num[0]+"，"+num[1]+","+num[2]+"，"+num[3];
-// 		if(index==0){
-// 			document.getElementById("position-x").innerHTML = "西丽湖校区北门";
-// 		}else if(index==1){
-// 			document.getElementById("position-x").innerHTML = "西丽湖校区南门";
-// 		}else if(index==2){
-// 			document.getElementById("position-x").innerHTML = "西丽湖校区西门";
-// 		}else{
-// 			document.getElementById("position-x").innerHTML = "西丽湖校区东门";
-// 		}
+		if(index==0){
+			document.getElementById("position-x").innerHTML = "西丽湖校区北门";
+		}else if(index==1){
+			document.getElementById("position-x").innerHTML = "西丽湖校区南门";
+		}else if(index==2){
+			document.getElementById("position-x").innerHTML = "西丽湖校区西门";
+		}else{
+			document.getElementById("position-x").innerHTML = "西丽湖校区东门";
+		}
 	}
 	//定位数据获取失败响应
 	function onError(error) {
