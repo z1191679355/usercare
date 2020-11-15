@@ -1,0 +1,54 @@
+#qrcode>img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+#qrcode>canvas {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.mint-popup-bottom .mint-textarea .mint-textarea-count {
+    margin-bottom: 0;
+    padding-bottom: 16px;
+}
+
+.tg-popup .mint-textarea .mint-textarea-count {
+    margin-bottom: 0;
+    padding-bottom: 16px;
+}
+
+.tg-popup .van-overlay {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.emapm-form.emapm-form-readonly .mint-cell-group .emap-cellgroup-hastitle+.mint-cell-group-content .emapm-item:first-child {
+    padding-top: 0px !important;
+    border-top: none !important;
+}
+
+header.mint-header {
+    height: 48px !important;
+}
+
+.custom-mint-button-group {
+    margin: 4px;
+}
+
+.custom-mint-button-group button {
+    border-radius: 0;
+}
+
+.custom-mint-button-group button:nth-of-type(n+1) {
+    margin-top: 4px;
+}
+
+.qrcode-tip-text {
+    padding-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+}
